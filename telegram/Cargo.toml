@@ -5,10 +5,10 @@ edition = "2021"
 license = "MIT"
 
 [dependencies]
-anyhow = "1.0.61"
+anyhow = "1.0.62"
 clap = { version = "3.2.17", features = ["derive"] }
 css-color = "0.2.4"
-futures = "0.3.21"
+futures = "0.3.23"
 image = "0.24.3"
 log = "0.4.17"
 mediatype = "0.19.6"
@@ -24,8 +24,8 @@ tokio-stream = "0.1.9"
 toml = "0.5.9"
 tree_magic = "0.2.3"
 warp = "0.3.2"
-yozuk = "0.22.5"
-yozuk-sdk = "0.22.0"
+yozuk = "0.22.7"
+yozuk-sdk = "0.22.7"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-yozuk = { version = "0.22.5", features = ["rayon"] }
+yozuk = { version = "0.22.7", features = ["rayon"] }
