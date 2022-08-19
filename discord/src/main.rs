@@ -76,7 +76,14 @@ async fn handle_message(handler: &Handler, ctx: Context, msg: Message) -> Result
             return Ok(());
         }
 
-        let result = handler.yozuk.run_commands(commands, &mut attachments, None);
+        let user = UserContext {
+            username: Some(msg.author.name.clone()),
+            ..Default::default()
+        };
+
+        let result = handler
+            .yozuk
+            .run_commands(commands, &mut attachments, Some(&user));
         let outputs = match result {
             Ok(outputs) => outputs,
             Err(outputs) => outputs,
