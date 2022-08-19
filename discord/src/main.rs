@@ -71,7 +71,18 @@ async fn handle_message(handler: &Handler, ctx: Context, msg: Message) -> Result
         let tokens = Tokenizer::new().tokenize(&content);
         let commands = handler.yozuk.get_commands(&tokens, &attachments);
         if commands.is_empty() {
-            msg.reply(&ctx.http, "Sorry, I can't understand your request.")
+            msg.channel_id
+                .send_message(&ctx.http, |m| {
+                    m.content("Sorry, I can't understand your request.")
+                        .add_embed(|f| {
+                            f.field(
+                                "Hint",
+                                "Please refer [Documentation](https://docs.yozuk.com/) for available commands.",
+                                true,
+                            )
+                        })
+                        .reference_message(&msg)
+                })
                 .await?;
             return Ok(());
         }
