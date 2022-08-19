@@ -102,7 +102,12 @@ async fn handle_message(handler: &Handler, ctx: Context, msg: Message) -> Result
                         if let Ok(text) = str::from_utf8(&data.data) {
                             content.push(format!("```\n{}\n```", text));
                         } else {
-                            files.push((data.data.clone(), data.file_name.clone()));
+                            let filename = if data.file_name.is_empty() {
+                                "data.bin".into()
+                            } else {
+                                data.file_name.clone()
+                            };
+                            files.push((data.data.clone(), filename));
                         }
                     }
                     _ => {}
