@@ -220,6 +220,7 @@ async fn handle_request(msg: Message, zuk: Arc<Yozuk>, client: reqwest::Client) 
 
     let tokens = Tokenizer::new().tokenize(&text);
     let user = UserContext {
+        username: user.name,
         timezone: user.tz,
         ..Default::default()
     };

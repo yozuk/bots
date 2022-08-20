@@ -13,5 +13,6 @@ pub struct UserResponse {
 #[derive(Debug, Default, Clone, Deserialize)]
 pub struct User {
     pub id: String,
+    pub name: Option<String>,
     pub tz: Option<String>,
 }
