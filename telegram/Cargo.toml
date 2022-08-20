@@ -12,7 +12,6 @@ futures = "0.3.23"
 image = "0.24.3"
 log = "0.4.17"
 mediatype = "0.19.6"
-new_mime_guess = "4.0.1"
 pretty_env_logger = "0.4.0"
 reqwest = "0.11.11"
 serde_json = "1.0.83"
@@ -26,6 +25,7 @@ tree_magic = "0.2.3"
 warp = "0.3.2"
 yozuk = "0.22.8"
 yozuk-sdk = "0.22.7"
+yozuk-helper-filetype = "0.22.8"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 yozuk = { version = "0.22.8", features = ["rayon"] }

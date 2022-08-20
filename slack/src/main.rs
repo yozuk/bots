@@ -16,6 +16,7 @@ use tokio::io::AsyncWriteExt;
 use warp::Filter;
 use websocket_lite::Opcode;
 use yozuk::Yozuk;
+use yozuk_helper_filetype::get_file_extension;
 use yozuk_sdk::prelude::*;
 
 mod args;
@@ -268,9 +269,14 @@ async fn handle_request(msg: Message, zuk: Arc<Yozuk>, client: reqwest::Client) 
                             ..Default::default()
                         }
                     } else {
+                        let filename = if data.file_name.is_empty() {
+                            format!("data.{}", get_file_extension(&data.media_type))
+                        } else {
+                            data.file_name
+                        };
                         let file = multipart::Part::bytes(data.data.to_vec())
-                            .file_name(data.file_name)
-                            .mime_str(&data.media_type.to_string())?;
+                            .file_name(filename)
+                            .mime_str(data.media_type.as_ref())?;
                         let form = multipart::Form::new()
                             .part("file", file)
                             .text("channels", msg.channel.clone());

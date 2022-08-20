@@ -14,6 +14,7 @@ use std::str;
 use std::sync::Arc;
 use yozuk::Yozuk;
 use yozuk_sdk::prelude::*;
+use yozuk_helper_filetype::get_file_extension;
 
 const MAX_FILE_SIZE: usize = 10485760;
 
@@ -114,7 +115,7 @@ async fn handle_message(handler: &Handler, ctx: Context, msg: Message) -> Result
                             content.push(format!("```\n{}\n```", text));
                         } else {
                             let filename = if data.file_name.is_empty() {
-                                "data.bin".into()
+                                format!("data.{}", get_file_extension(&data.media_type))
                             } else {
                                 data.file_name.clone()
                             };

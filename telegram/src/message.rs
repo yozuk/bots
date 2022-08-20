@@ -8,6 +8,7 @@ use teloxide::{
     prelude::*,
     types::{InputFile, ParseMode},
 };
+use yozuk_helper_filetype::get_file_extension;
 use yozuk_sdk::prelude::*;
 
 const MAX_TEXT_LENGTH: usize = 2048;
@@ -74,6 +75,11 @@ async fn render_data(
     let essence = block.media_type.essence();
     let data = &block.data;
     let text = str::from_utf8(data).ok();
+    let filename = if block.file_name.is_empty() {
+        format!("data.{}", get_file_extension(&block.media_type))
+    } else {
+        block.file_name
+    };
 
     match text {
         Some(text) if text.len() <= MAX_TEXT_LENGTH => {
@@ -98,12 +104,9 @@ async fn render_data(
                 .await?;
         }
         _ => {
-            let ext = new_mime_guess::get_extensions(essence.ty.as_str(), essence.subty.as_str())
-                .and_then(|list| list.first())
-                .unwrap_or(&"bin");
             bot.send_document(
                 msg.chat.id,
-                InputFile::memory(data.to_vec()).file_name(format!("data.{}", ext)),
+                InputFile::memory(data.to_vec()).file_name(filename),
             )
             .send()
             .await?;
