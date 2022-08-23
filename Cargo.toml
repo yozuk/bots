@@ -1,5 +1,5 @@
 [workspace]
-members = ["discord", "slack", "telegram"]
+members = ["discord", "slack", "telegram", "deltachat"]
 resolver = "2"
 
 [profile.release]

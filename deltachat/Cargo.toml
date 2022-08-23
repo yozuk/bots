@@ -1,0 +1,17 @@
+[package]
+name = "yozuk-deltachat"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.62"
+clap = { version = "3.2.17", features = ["derive", "env"] }
+deltachat = { git = "https://github.com/deltachat/deltachat-core-rust.git" }
+log = "0.4.17"
+pretty_env_logger = "0.4.0"
+tempfile = "3.3.0"
+tokio = { version = "1.20.1", features = ["macros", "rt"] }
+yozuk = { version = "0.22.9", features = ["rayon"] }
+yozuk-sdk = "0.22.7"
