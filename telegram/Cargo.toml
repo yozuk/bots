@@ -14,8 +14,8 @@ log = "0.4.17"
 mediatype = "0.19.6"
 pretty_env_logger = "0.4.0"
 reqwest = "0.11.11"
-serde_json = "1.0.83"
-serde_yaml = "0.9.9"
+serde_json = "1.0.85"
+serde_yaml = "0.9.10"
 teloxide = "0.10.1"
 tempfile = "3.3.0"
 tokio = { version = "1.20.1", features = ["rt-multi-thread", "macros"] }
@@ -23,9 +23,9 @@ tokio-stream = "0.1.9"
 toml = "0.5.9"
 tree_magic = "0.2.3"
 warp = "0.3.2"
-yozuk = "0.22.8"
+yozuk = "0.22.9"
 yozuk-sdk = "0.22.7"
 yozuk-helper-filetype = "0.22.8"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-yozuk = { version = "0.22.8", features = ["rayon"] }
+yozuk = { version = "0.22.9", features = ["rayon"] }
