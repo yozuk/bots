@@ -5363,9 +5363,9 @@ checksum = "d2d7d3948613f75c98fd9328cfdcc45acc4d360655289d0a7d4ec931392200a3"
 
 [[package]]
 name = "yozuk"
-version = "0.22.9"
+version = "0.22.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1b6242f62b0a4c71ab939db284869b1af9b559380ca4acab4809f7808bc50a63"
+checksum = "97fad06b209bd728920bf48fc81148dd4f1fba36e8405b3275ad90e640f47dc5"
 dependencies = [
  "anyhow",
  "bytes",
@@ -5385,9 +5385,9 @@ dependencies = [
 
 [[package]]
 name = "yozuk-core-skillset"
-version = "0.22.9"
+version = "0.22.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "20f439175067a5030f660c2c164b59e9ada14e6806eeb3649c7df1524858bf3b"
+checksum = "ad81d29a046db6d34fc221592e02c1b71bab5df06f73b3dc0ed8f249e4426e6b"
 dependencies = [
  "anyhow",
  "argon2",
