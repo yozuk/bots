@@ -13,8 +13,8 @@ use std::io::Cursor;
 use std::str;
 use std::sync::Arc;
 use yozuk::Yozuk;
-use yozuk_sdk::prelude::*;
 use yozuk_helper_filetype::get_file_extension;
+use yozuk_sdk::prelude::*;
 
 const MAX_FILE_SIZE: usize = 10485760;
 
@@ -110,10 +110,11 @@ async fn handle_message(handler: &Handler, ctx: Context, msg: Message) -> Result
                     Block::Comment(comment) => {
                         content.push(comment.text);
                     }
-                    Block::Data(data) => {
-                        if let Ok(text) = str::from_utf8(&data.data) {
+                    Block::Data(data) => match str::from_utf8(&data.data) {
+                        Ok(text) if text.len() <= 1024 => {
                             content.push(format!("```\n{}\n```", text));
-                        } else {
+                        }
+                        _ => {
                             let filename = if data.file_name.is_empty() {
                                 format!("data.{}", get_file_extension(&data.media_type))
                             } else {
@@ -121,7 +122,7 @@ async fn handle_message(handler: &Handler, ctx: Context, msg: Message) -> Result
                             };
                             files.push((data.data.clone(), filename));
                         }
-                    }
+                    },
                     _ => {}
                 }
             }
