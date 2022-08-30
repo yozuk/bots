@@ -7,11 +7,11 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.62"
-clap = { version = "3.2.17", features = ["derive", "env"] }
+clap = { version = "3.2.18", features = ["derive", "env"] }
 deltachat = { git = "https://github.com/deltachat/deltachat-core-rust.git" }
 log = "0.4.17"
 pretty_env_logger = "0.4.0"
 tempfile = "3.3.0"
 tokio = { version = "1.20.1", features = ["macros", "rt"] }
-yozuk = { version = "0.22.10", features = ["rayon"] }
-yozuk-sdk = "0.22.7"
+yozuk = { version = "0.22.11", features = ["rayon"] }
+yozuk-sdk = "0.22.11"
